@@ -92,20 +92,26 @@ class Event:
     def validate_event(form_data):
         is_valid = True
 
-        if len(form_data['event_name']) < 3:
-            flash("event_name must be at least 3 characters long.")
+        if len(form_data['event_name']) < 1:
+            flash("Please provide an event name.")
             is_valid = False
-        if len(form_data['location']) < 3:
-            flash("location must be at least 3 characters long.")
+        elif len(form_data['event_name']) < 3:
+            flash("Event name must be more than 3 characters.")
+            is_valid = False
+        if len(form_data['location']) < 1:
+            flash("Please provide a location.")
+            is_valid = False
+        elif len(form_data['location']) < 3:
+            flash("Location name must be more than 3 characters.")
             is_valid = False
         if form_data['participants'] == '':
-            flash("Please input a participants.")
+            flash("Please include participants.")
             is_valid = False
         if form_data['date'] == '':
             flash("Please input a date.")
             is_valid = False  
         if form_data['messages'] == '':
-            flash("Please input an messages.")
+            flash("Please provide a message.")
             is_valid = False  
         return is_valid
 

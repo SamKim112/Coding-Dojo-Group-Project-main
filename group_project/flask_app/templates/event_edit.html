@@ -51,14 +51,20 @@
 
         <div class="d-flex justify-content-center">
             <form class="d-flex flex-column justify-content-center" action="/events/edit/process/{{event.id}}" method="POST">
-
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
                 <label for="event_name">Event Name:</label>
                 <input type="text" name="event_name" value={{event.event_name}}>
                 <label for="location">Location:</label>
                 <input type="text" name="location" value={{event.location}}>
                 <label for="participants">Participants:</label>
                 <input type="text" name="participants" value={{event.participants}}>
-                <label for="date">Event date & time:</label>
+                <label for="date">Event date:</label>
                 <input type="date" name="date" value={{event.date}}>
                 <label for="messages">Messages:</label>
                 <input type="text" name="messages" value={{event.messages}}>

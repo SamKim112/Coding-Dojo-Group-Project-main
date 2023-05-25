@@ -54,7 +54,15 @@
         </div>
 
         <div class="d-flex justify-content-center">
+            
             <form class="d-flex flex-column align-items-center" action="/events/new/process" method="POST">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
                     <label for="event_name">Event Name:</label>
                     <input type="text" name="event_name">
                     <label for="location">Location:</label>
